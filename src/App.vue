@@ -1,12 +1,4 @@
-<script setup lang="ts">
-console.log('jhfik jnfkdewn mnf' + 'klewn')
-
-const a = () => {
-  const b = 1
-  var c = 100
-  let aaa = 'nbfjek'
-}
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div>
