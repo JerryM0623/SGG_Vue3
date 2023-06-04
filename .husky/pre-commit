@@ -4,4 +4,3 @@
 pnpm run lint
 pnpm run fix
 pnpm run format
-git add .
