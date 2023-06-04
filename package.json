@@ -20,7 +20,9 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
+    "axios": "^1.4.0",
     "element-plus": "^2.3.6",
+    "vite-plugin-mock": "2.9.6",
     "vue": "^3.2.47"
   },
   "devDependencies": {
@@ -37,6 +39,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.14.1",
     "husky": "^8.0.0",
+    "mockjs": "^1.1.0",
     "postcss": "^8.4.24",
     "postcss-html": "^1.5.0",
     "postcss-scss": "^4.0.6",
