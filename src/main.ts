@@ -4,6 +4,8 @@ import App from '@/App.vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
+import '@/styles/index.scss'
+
 import 'virtual:svg-icons-register'
 import gloablComponent from './components/index'
 
