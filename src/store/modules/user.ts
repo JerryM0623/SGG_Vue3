@@ -13,6 +13,8 @@ export const useUserStore = defineStore('user', () => {
   }
 
   return {
+    // 必须要将数据return出去才能在开发者选项中查看
+    userToken,
     getUserToken,
     setUserToken,
   }
