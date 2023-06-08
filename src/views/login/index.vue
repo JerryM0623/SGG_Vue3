@@ -6,8 +6,10 @@ import type { UserLoginReqDataModel } from '@/api/user/types'
 import { userLogin } from '@/api/user'
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/store/modules/user.ts'
 
 const router = useRouter()
+const userStore = useUserStore()
 
 const loginLoading = ref(false)
 const loginFormRef = ref<FormInstance>(null)
@@ -45,8 +47,11 @@ function login() {
       // 发送请求
       userLogin(data)
         .then((res) => {
-          const { code, data } = res
-          if (code === 200) {
+          const { data } = res
+          // 因为这里面data永远只可能存在 token 或者 message 其中一个属性，也就是说登录成功就意味着token存在，反之message存在
+          if (data.token) {
+            // 保存 token
+            userStore.setUserToken(data.token)
             // 登录成功
             ElNotification({
               type: 'success',
