@@ -1,16 +1,23 @@
 <script setup lang="ts">
+import type { FormInstance, FormRules } from 'element-plus'
+import { ElMessage, ElNotification } from 'element-plus'
 import { User, Lock } from '@element-plus/icons-vue'
+import type { UserLoginReqDataModel } from '@/api/user/types'
+import { userLogin } from '@/api/user'
 import { ref, reactive } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const loginLoading = ref(false)
-const loginFormRef = ref(null)
+const loginFormRef = ref<FormInstance>(null)
 
 const loginForm = reactive({
   username: '',
   password: '',
 })
 
-const rules = {
+const rules: FormRules = {
   username: [
     { required: true, message: '请输入用户名', trigger: 'blur' },
     { min: 5, message: '用户名至少5个字符', trigger: 'blur' },
@@ -22,7 +29,47 @@ const rules = {
 }
 
 function login() {
-  console.log('login...')
+  loginFormRef.value.validate((isValid: boolean) => {
+    if (!isValid) {
+      ElMessage.error('输入信息有误，请重新确认')
+    } else {
+      // 开启加载
+      loginLoading.value = true
+
+      // 拼接参数
+      const data: UserLoginReqDataModel = {
+        username: loginForm.username,
+        password: loginForm.password,
+      }
+
+      // 发送请求
+      userLogin(data)
+        .then((res) => {
+          const { code, data } = res
+          if (code === 200) {
+            // 登录成功
+            ElNotification({
+              type: 'success',
+              title: 'Success!',
+              message: '登录成功!!!',
+            })
+            router.push({ name: 'Home' })
+          } else {
+            ElNotification({
+              type: 'error',
+              title: 'Oops!',
+              message: data.message,
+            })
+          }
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+        .finally(() => {
+          loginLoading.value = false
+        })
+    }
+  })
 }
 </script>
 

@@ -5,7 +5,8 @@ export interface UserLoginReqDataModel {
 }
 
 interface UserLoginResDataModel {
-  token: string
+  token?: string
+  message?: string
 }
 
 // 用户登录的返回模型
