@@ -1,2 +1,23 @@
 // 配置整个项目的全局变量
-$base-text-color: #ff0000;
+
+// 基准色
+$base-color: #4c68ef;
+// 加深版本
+$deepen-color: #3c57dc;
+// 浅化版本
+$shallow-color: #92a3f9;
+
+// 基准字体
+$base-text-size: 16px;
+$base-text-color: #ffffff;
+// 提示语字体
+$hint-text-size: 12px;
+$hint-text-color: #bdbdbd;
+
+// 基准内间距
+$base-padding: 20px;
+// 缩小内间距
+$shallow-padding: 15px;
+
+// 模板左侧菜单宽度
+$layout-menu-width: 220px;
