@@ -1,36 +1,14 @@
 <script setup lang="ts">
 import Logo from './components/Logo.vue'
+import Menu from './components/Menu.vue'
+import { constantRoutes } from '@/router/routes'
 </script>
 
 <template>
   <div class="layout-container">
     <div class="menu">
       <Logo></Logo>
-      <el-scrollbar class="menu-scroll">
-        <el-menu
-          default-active="1"
-          class="layout-menu"
-          background-color="#4c68ef"
-          text-color="#ffffff"
-          active-background-color="#3c57dc"
-          active-text-color="#fb8a2e"
-        >
-          <el-menu-item index="1">首页</el-menu-item>
-          <el-menu-item index="2">数据大屏</el-menu-item>
-          <el-sub-menu index="3">
-            <template #title>权限管理</template>
-            <el-menu-item index="3-1">用户管理</el-menu-item>
-            <el-menu-item index="3-2">角色管理</el-menu-item>
-            <el-menu-item index="3-3">菜单管理</el-menu-item>
-          </el-sub-menu>
-          <el-sub-menu index="4">
-            <template #title>商品管理</template>
-            <el-menu-item index="4-1">用户管理1</el-menu-item>
-            <el-menu-item index="4-2">角色管理2</el-menu-item>
-            <el-menu-item index="4-3">菜单管理3</el-menu-item>
-          </el-sub-menu>
-        </el-menu>
-      </el-scrollbar>
+      <Menu :menuList="constantRoutes"></Menu>
     </div>
     <div class="content">
       <div class="top-header"></div>
@@ -53,15 +31,6 @@ import Logo from './components/Logo.vue'
     height: 100vh;
     background-color: $base-color;
     padding: $shallow-padding $base-padding;
-
-    .menu-scroll {
-      width: 100%;
-      height: calc(100% - $layout-logo-height);
-
-      .layout-menu {
-        border-right: unset;
-      }
-    }
   }
 
   .content {

@@ -1,19 +1,51 @@
-export const constantRoutes = [
+import { RouteRecordRaw } from 'vue-router'
+
+export const constantRoutes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'Login',
+    meta: {
+      title: '登录',
+      hidden: true,
+    },
     component: () => import('@/views/login/index.vue'),
   },
   {
     path: '/',
-    name: 'Home',
-    // 路由别名，访问 /home 等同于访问 /
-    alias: '/home',
+    name: 'layout',
+    meta: {
+      title: '管理',
+      hidden: false,
+    },
     component: () => import('@/layout/index.vue'),
+    children: [
+      {
+        path: '/home',
+        name: 'home',
+        meta: {
+          title: '首页',
+          hidden: false,
+        },
+        component: () => import('@/views/home/index.vue'),
+      },
+      {
+        path: '/screen',
+        name: 'screen',
+        meta: {
+          title: '数据大屏',
+          hidden: false,
+        },
+        component: () => import('@/views/home/index.vue'),
+      },
+    ],
   },
   {
     path: '/404',
     name: '404',
+    meta: {
+      title: '404',
+      hidden: true,
+    },
     component: () => import('@/views/404/index.vue'),
   },
   {
@@ -21,5 +53,9 @@ export const constantRoutes = [
     path: '/:pathMatch(.*)*',
     name: 'Any',
     redirect: '/404',
+    meta: {
+      name: 'any',
+      hidden: true,
+    },
   },
 ]
