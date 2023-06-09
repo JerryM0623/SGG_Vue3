@@ -37,13 +37,13 @@
 
     .top-header {
       width: 100%;
-      height: 50px;
-      border-bottom: 1px solid #ccc;
+      height: $layout-headerbar-height;
+      border-bottom: 1px solid $border-color;
     }
 
     .bottom-view {
       width: 100%;
-      height: calc(100vh - 50px);
+      height: calc(100vh - $layout-headerbar-height);
       padding: $base-padding;
     }
   }
