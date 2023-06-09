@@ -7,16 +7,29 @@ export const constantRoutes: RouteRecordRaw[] = [
     meta: {
       title: '登录',
       hidden: true,
+      icon: 'Promotion',
     },
     component: () => import('@/views/login/index.vue'),
+  },
+  {
+    path: '/screen',
+    name: 'screen',
+    meta: {
+      title: '数据大屏',
+      hidden: false,
+      icon: 'TrendCharts',
+    },
+    component: () => import('@/views/screen/index.vue'),
   },
   {
     path: '/',
     name: 'layout',
     meta: {
-      title: '管理',
+      title: 'layout',
       hidden: false,
+      icon: 'Menu',
     },
+    redirect: '/home',
     component: () => import('@/layout/index.vue'),
     children: [
       {
@@ -25,17 +38,103 @@ export const constantRoutes: RouteRecordRaw[] = [
         meta: {
           title: '首页',
           hidden: false,
+          icon: 'HomeFilled',
         },
         component: () => import('@/views/home/index.vue'),
       },
+    ],
+  },
+  {
+    path: '/acl',
+    name: 'Acl',
+    meta: {
+      title: '权限管理',
+      hidden: false,
+      icon: 'WarningFilled',
+    },
+    component: () => import('@/layout/index.vue'),
+    children: [
       {
-        path: '/screen',
-        name: 'screen',
+        path: 'user',
+        name: 'Acl',
         meta: {
-          title: '数据大屏',
+          title: '账户管理',
           hidden: false,
+          icon: 'UserFilled',
         },
-        component: () => import('@/views/home/index.vue'),
+        component: () => import('@/views/acl/user/index.vue'),
+      },
+      {
+        path: 'role',
+        name: 'Role',
+        meta: {
+          title: '角色管理',
+          hidden: false,
+          icon: 'Avatar',
+        },
+        component: () => import('@/views/acl/role/index.vue'),
+      },
+      {
+        path: 'permission',
+        name: 'Permission',
+        meta: {
+          title: '菜单管理',
+          hidden: false,
+          icon: 'Grid',
+        },
+        component: () => import('@/views/acl/permission/index.vue'),
+      },
+    ],
+  },
+  {
+    path: '/product',
+    name: 'Product',
+    meta: {
+      title: '商品管理',
+      hidden: false,
+      icon: 'GoodsFilled',
+    },
+    component: () => import('@/layout/index.vue'),
+    children: [
+      {
+        path: 'trademark',
+        name: 'Trademark',
+        meta: {
+          title: '品牌管理',
+          hidden: false,
+          icon: 'Shop',
+        },
+        component: () => import('@/views/product/trademark/index.vue'),
+      },
+      {
+        path: 'attr',
+        name: 'Attr',
+        meta: {
+          title: '属性管理',
+          hidden: false,
+          icon: 'Opportunity',
+        },
+        component: () => import('@/views/product/attr/index.vue'),
+      },
+      {
+        path: 'sku',
+        name: 'Sku',
+        meta: {
+          title: 'SKU管理',
+          hidden: false,
+          icon: 'List',
+        },
+        component: () => import('@/views/product/sku/index.vue'),
+      },
+      {
+        path: 'spu',
+        name: 'Spu',
+        meta: {
+          title: 'SPU管理',
+          hidden: false,
+          icon: 'List',
+        },
+        component: () => import('@/views/product/spu/index.vue'),
       },
     ],
   },
