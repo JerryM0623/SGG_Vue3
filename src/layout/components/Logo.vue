@@ -3,7 +3,7 @@ import setting from '@/setting'
 </script>
 
 <template>
-  <div class="logo-container" v-if="setting.isShowLogo">
+  <div class="logo-container">
     <img class="logo-img" :src="setting.logoUrl" alt="" />
     <div class="logo-title">{{ setting.logoTitle }}</div>
   </div>
