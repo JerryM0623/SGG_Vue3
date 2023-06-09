@@ -20,9 +20,15 @@ $hint-text-color: #bdbdbd;
 // 基准内间距
 $base-padding: 20px;
 // 缩小内间距
-$shallow-padding: 15px;
+$shallow-padding: 10px;
+// 基准外间距
+$base-margin: 20px;
+// 缩小外间距
+$shallow-margin: 10px;
 
 // 模板左侧菜单宽度
-$layout-menu-width: 220px;
+$layout-menu-width: 300px;
 // 模板headerbar高度
-$layout-headerbar-height: 50px;
+$layout-headerbar-height: 60px;
+// logo区域的整体高度
+$layout-logo-height: 50px;
