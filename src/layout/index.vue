@@ -1,8 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Logo from './components/Logo.vue'
+</script>
 
 <template>
   <div class="layout-container">
-    <div class="menu"></div>
+    <div class="menu">
+      <Logo></Logo>
+    </div>
     <div class="content">
       <div class="top-header"></div>
       <div class="bottom-view"></div>
@@ -23,7 +27,7 @@
     width: $layout-menu-width;
     height: 100vh;
     background-color: $base-color;
-    padding: $base-padding;
+    padding: $shallow-padding $base-padding;
   }
 
   .content {
@@ -45,6 +49,7 @@
       width: 100%;
       height: calc(100vh - $layout-headerbar-height);
       padding: $base-padding;
+      overflow: auto;
     }
   }
 }
