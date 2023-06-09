@@ -9,7 +9,7 @@ export const constantRoutes = [
     name: 'Home',
     // 路由别名，访问 /home 等同于访问 /
     alias: '/home',
-    component: () => import('@/views/home/index.vue'),
+    component: () => import('@/layout/index.vue'),
   },
   {
     path: '/404',
