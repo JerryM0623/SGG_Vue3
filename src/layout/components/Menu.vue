@@ -11,7 +11,7 @@ defineProps(['menuList'])
       background-color="#4c68ef"
       text-color="#ffffff"
       active-background-color="#3c57dc"
-      active-text-color="#fb8a2e"
+      router
     >
       <menu-item
         v-for="item in menuList"

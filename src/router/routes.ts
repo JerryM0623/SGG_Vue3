@@ -12,16 +12,6 @@ export const constantRoutes: RouteRecordRaw[] = [
     component: () => import('@/views/login/index.vue'),
   },
   {
-    path: '/screen',
-    name: 'screen',
-    meta: {
-      title: '数据大屏',
-      hidden: false,
-      icon: 'TrendCharts',
-    },
-    component: () => import('@/views/screen/index.vue'),
-  },
-  {
     path: '/',
     name: 'layout',
     meta: {
@@ -45,6 +35,16 @@ export const constantRoutes: RouteRecordRaw[] = [
     ],
   },
   {
+    path: '/screen',
+    name: 'screen',
+    meta: {
+      title: '数据大屏',
+      hidden: false,
+      icon: 'TrendCharts',
+    },
+    component: () => import('@/views/screen/index.vue'),
+  },
+  {
     path: '/acl',
     name: 'Acl',
     meta: {
@@ -55,7 +55,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     component: () => import('@/layout/index.vue'),
     children: [
       {
-        path: 'user',
+        path: '/acl/user',
         name: 'Acl',
         meta: {
           title: '账户管理',
@@ -65,7 +65,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/acl/user/index.vue'),
       },
       {
-        path: 'role',
+        path: '/acl/role',
         name: 'Role',
         meta: {
           title: '角色管理',
@@ -75,7 +75,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/acl/role/index.vue'),
       },
       {
-        path: 'permission',
+        path: '/acl/permission',
         name: 'Permission',
         meta: {
           title: '菜单管理',
@@ -97,7 +97,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     component: () => import('@/layout/index.vue'),
     children: [
       {
-        path: 'trademark',
+        path: '/product/trademark',
         name: 'Trademark',
         meta: {
           title: '品牌管理',
@@ -107,7 +107,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/product/trademark/index.vue'),
       },
       {
-        path: 'attr',
+        path: '/product/attr',
         name: 'Attr',
         meta: {
           title: '属性管理',
@@ -117,7 +117,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/product/attr/index.vue'),
       },
       {
-        path: 'sku',
+        path: '/product/sku',
         name: 'Sku',
         meta: {
           title: 'SKU管理',
@@ -127,7 +127,7 @@ export const constantRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/product/sku/index.vue'),
       },
       {
-        path: 'spu',
+        path: '/product/spu',
         name: 'Spu',
         meta: {
           title: 'SPU管理',

@@ -12,7 +12,14 @@ import { constantRoutes } from '@/router/routes'
     </div>
     <div class="content">
       <div class="top-header"></div>
-      <div class="bottom-view"></div>
+      <div class="bottom-view">
+        <!-- 为页面切换特效做准备 -->
+        <router-view v-slot="{ Component }">
+          <transition name="fade">
+            <component :is="Component" />
+          </transition>
+        </router-view>
+      </div>
     </div>
   </div>
 </template>
@@ -46,6 +53,7 @@ import { constantRoutes } from '@/router/routes'
       width: 100%;
       height: $layout-headerbar-height;
       border-bottom: 1px solid $border-color;
+      padding: 0 $base-padding;
     }
 
     .bottom-view {
@@ -53,6 +61,18 @@ import { constantRoutes } from '@/router/routes'
       height: calc(100vh - $layout-headerbar-height);
       padding: $base-padding;
       overflow: auto;
+
+      .fade-enter-from {
+        opacity: 0;
+        transform: scale(0);
+      }
+      .fade-enter-active {
+        transition: all 1s;
+      }
+      .fade-enter-to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
   }
 }
