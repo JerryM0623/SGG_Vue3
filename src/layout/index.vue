@@ -2,19 +2,34 @@
 import Logo from './components/Logo.vue'
 import Menu from './components/Menu.vue'
 import { constantRoutes } from '@/router/routes'
-import {ArrowRight, Refresh, FullScreen, Setting } from '@element-plus/icons-vue'
+import {
+  ArrowRight,
+  Refresh,
+  FullScreen,
+  Setting,
+} from '@element-plus/icons-vue'
+import useLayoutStore from '@/store/modules/layout.ts'
+
+const layoutStore = useLayoutStore()
 </script>
 
 <template>
   <div class="layout-container">
-    <div class="menu">
+    <div class="menu" :class="{ 'menu-fold': layoutStore.isSideMenuCollapse }">
       <Logo></Logo>
       <Menu :menuList="constantRoutes"></Menu>
     </div>
-    <div class="content">
+    <div
+      class="content"
+      :class="{ 'menu-fold': layoutStore.isSideMenuCollapse }"
+    >
       <div class="top-header">
         <div class="headerbar-left">
-          <el-icon><Expand /></el-icon>
+          <el-icon @click="layoutStore.updateCollapse">
+            <component
+              :is="layoutStore.isSideMenuCollapse ? 'Expand' : 'Fold'"
+            ></component>
+          </el-icon>
           <el-breadcrumb :separator-icon="ArrowRight">
             <el-breadcrumb-item>权限管理</el-breadcrumb-item>
             <el-breadcrumb-item>用户管理</el-breadcrumb-item>
@@ -65,7 +80,12 @@ import {ArrowRight, Refresh, FullScreen, Setting } from '@element-plus/icons-vue
     width: $layout-menu-width;
     height: 100vh;
     background-color: $base-color;
-    padding: $shallow-padding $base-padding;
+    padding: $shallow-padding 0;
+    transition: all 0.5s;
+
+    &.menu-fold {
+      width: $layout-menu-fold-width;
+    }
   }
 
   .content {
@@ -76,6 +96,11 @@ import {ArrowRight, Refresh, FullScreen, Setting } from '@element-plus/icons-vue
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    transition: all 0.5s;
+
+    &.menu-fold {
+      width: calc(100% - $layout-menu-fold-width);
+    }
 
     .top-header {
       width: 100%;

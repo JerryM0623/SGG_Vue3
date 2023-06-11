@@ -1,11 +1,19 @@
 <script setup lang="ts">
 import setting from '@/setting'
+import useLayoutStore from '@/store/modules/layout.ts'
+
+const layoutStore = useLayoutStore()
 </script>
 
 <template>
   <div class="logo-container">
     <img class="logo-img" :src="setting.logoUrl" alt="" />
-    <div class="logo-title">{{ setting.logoTitle }}</div>
+    <div
+      class="logo-title"
+      :class="{ 'menu-fold': layoutStore.isSideMenuCollapse }"
+    >
+      {{ setting.logoTitle }}
+    </div>
   </div>
 </template>
 
@@ -17,6 +25,7 @@ import setting from '@/setting'
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  padding: 0 $shallow-padding;
 
   .logo-img {
     width: 40px;
@@ -28,6 +37,13 @@ import setting from '@/setting'
     font-size: 20px;
     font-weight: 700;
     color: $base-text-color;
+    white-space: nowrap;
+    opacity: 1;
+    transition: all 0.5s;
+
+    &.menu-fold {
+      opacity: 0;
+    }
   }
 }
 </style>

@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import MenuItem from './MenuItem.vue'
 import { useRoute } from 'vue-router'
+import useLayoutStore from '@/store/modules/layout.ts'
+
+const layoutStore = useLayoutStore()
 defineProps(['menuList'])
 const route = useRoute()
 </script>
@@ -14,6 +17,7 @@ const route = useRoute()
       text-color="#ffffff"
       active-text-color="#7ec265"
       router
+      :collapse="layoutStore.isSideMenuCollapse"
     >
       <menu-item
         v-for="item in menuList"
