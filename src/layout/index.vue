@@ -2,6 +2,7 @@
 import Logo from './components/Logo.vue'
 import Menu from './components/Menu.vue'
 import { constantRoutes } from '@/router/routes'
+import {ArrowRight, Refresh, FullScreen, Setting } from '@element-plus/icons-vue'
 </script>
 
 <template>
@@ -11,7 +12,34 @@ import { constantRoutes } from '@/router/routes'
       <Menu :menuList="constantRoutes"></Menu>
     </div>
     <div class="content">
-      <div class="top-header"></div>
+      <div class="top-header">
+        <div class="headerbar-left">
+          <el-icon><Expand /></el-icon>
+          <el-breadcrumb :separator-icon="ArrowRight">
+            <el-breadcrumb-item>权限管理</el-breadcrumb-item>
+            <el-breadcrumb-item>用户管理</el-breadcrumb-item>
+          </el-breadcrumb>
+        </div>
+        <div class="headerbar-right">
+          <el-button :icon="Refresh" circle />
+          <el-button :icon="FullScreen" circle />
+          <el-button :icon="Setting" circle />
+          <el-avatar :size="30" src="/logo/logo.png" />
+          <el-dropdown>
+            <span class="el-dropdown-link">
+              欢迎回来
+              <el-icon class="el-icon--right">
+                <arrow-down />
+              </el-icon>
+            </span>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item>退出登录</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </div>
+      </div>
       <div class="bottom-view">
         <!-- 为页面切换特效做准备 -->
         <router-view v-slot="{ Component }">
@@ -54,6 +82,32 @@ import { constantRoutes } from '@/router/routes'
       height: $layout-headerbar-height;
       border-bottom: 1px solid $border-color;
       padding: 0 $base-padding;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .headerbar-left {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .el-icon {
+          margin-right: $shallow-margin;
+        }
+      }
+      .headerbar-right {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .el-avatar {
+          margin: 0 $shallow-margin;
+        }
+
+        .el-dropdown-link {
+          cursor: pointer;
+        }
+      }
     }
 
     .bottom-view {
