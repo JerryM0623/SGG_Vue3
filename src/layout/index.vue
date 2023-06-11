@@ -9,10 +9,15 @@ import {
   Setting,
 } from '@element-plus/icons-vue'
 import useLayoutStore from '@/store/modules/layout.ts'
+import { useUserStore } from '@/store/modules/user'
 import { useRoute } from 'vue-router'
-import { ref, watch, nextTick } from 'vue'
+import { ref, watch, nextTick, onMounted } from 'vue'
+import { userInfo } from '@/api/user'
+import { ElMessage } from 'element-plus'
+import { CheckUserType } from '@/api/user/types'
 
 const layoutStore = useLayoutStore()
+const userStore = useUserStore()
 const route = useRoute()
 
 const refreshFlag = ref(true)
@@ -33,6 +38,32 @@ function changeFullScreen() {
     document.documentElement.requestFullscreen()
   }
 }
+
+async function getUserInfo() {
+  try {
+    const result = await userInfo()
+    const { data } = result
+    if (data.message) {
+      ElMessage({
+        type: 'error',
+        message: data.message,
+      })
+    } else {
+      return data.checkUser
+    }
+  } catch (err) {
+    if (err instanceof Error) {
+      console.error(err.message)
+    } else {
+      console.error(err)
+    }
+  }
+}
+
+onMounted(async () => {
+  const data = await getUserInfo()
+  userStore.updateUserInfo(data as CheckUserType)
+})
 </script>
 
 <template>
@@ -71,10 +102,13 @@ function changeFullScreen() {
           />
           <el-button @click="changeFullScreen" :icon="FullScreen" circle />
           <el-button :icon="Setting" circle />
-          <el-avatar :size="30" src="/logo/logo.png" />
+          <el-avatar
+            :size="30"
+            :src="userStore.userInfo.avatar || '/logo/logo.png'"
+          />
           <el-dropdown>
             <span class="el-dropdown-link">
-              欢迎回来
+              {{ userStore.userInfo.username }}
               <el-icon class="el-icon--right">
                 <arrow-down />
               </el-icon>
