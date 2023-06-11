@@ -15,7 +15,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: '/',
     name: 'layout',
     meta: {
-      title: 'layout',
+      title: '',
       hidden: false,
       icon: 'Menu',
     },
@@ -47,6 +47,7 @@ export const constantRoutes: RouteRecordRaw[] = [
   {
     path: '/acl',
     name: 'Acl',
+    redirect: '/acl/user',
     meta: {
       title: '权限管理',
       hidden: false,
@@ -94,6 +95,7 @@ export const constantRoutes: RouteRecordRaw[] = [
       hidden: false,
       icon: 'GoodsFilled',
     },
+    redirect: '/product/trademark',
     component: () => import('@/layout/index.vue'),
     children: [
       {
