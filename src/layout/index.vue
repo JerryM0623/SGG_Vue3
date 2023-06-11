@@ -10,7 +10,7 @@ import {
 } from '@element-plus/icons-vue'
 import useLayoutStore from '@/store/modules/layout.ts'
 import { useUserStore } from '@/store/modules/user'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { ref, watch, nextTick, onMounted } from 'vue'
 import { userInfo } from '@/api/user'
 import { ElMessage } from 'element-plus'
@@ -19,6 +19,7 @@ import { CheckUserType } from '@/api/user/types'
 const layoutStore = useLayoutStore()
 const userStore = useUserStore()
 const route = useRoute()
+const router = useRouter()
 
 const refreshFlag = ref(true)
 watch(
@@ -37,6 +38,14 @@ function changeFullScreen() {
   } else {
     document.documentElement.requestFullscreen()
   }
+}
+
+function logout() {
+  // 请求后端(暂时不做)
+  // 清空store
+  userStore.cleanData()
+  // 跳转 login
+  router.push({ name: 'Login' })
 }
 
 async function getUserInfo() {
@@ -115,7 +124,7 @@ onMounted(async () => {
             </span>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item>退出登录</el-dropdown-item>
+                <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>

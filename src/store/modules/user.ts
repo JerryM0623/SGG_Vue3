@@ -5,7 +5,7 @@ import { CheckUserType } from '@/api/user/types'
 export const useUserStore = defineStore('user', () => {
   const userToken = ref<string>('')
   const userInfo = reactive<CheckUserType>({
-    userId: 0,
+    userId: -999,
     avatar: '',
     username: '',
     password: '',
@@ -36,6 +36,19 @@ export const useUserStore = defineStore('user', () => {
     userInfo.username = data.username
   }
 
+  function cleanData() {
+    userToken.value = ''
+    userInfo.userId = -999
+    userInfo.avatar = ''
+    userInfo.username = ''
+    userInfo.password = ''
+    userInfo.desc = ''
+    userInfo.roles = []
+    userInfo.buttons = []
+    userInfo.routes = []
+    userInfo.token = ''
+  }
+
   return {
     // 必须要将数据return出去才能在开发者选项中查看
     userToken,
@@ -43,5 +56,6 @@ export const useUserStore = defineStore('user', () => {
     getUserToken,
     setUserToken,
     updateUserInfo,
+    cleanData,
   }
 })
