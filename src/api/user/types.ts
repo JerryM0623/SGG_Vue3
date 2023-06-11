@@ -15,7 +15,7 @@ export interface UserLoginResModel {
   data: UserLoginResDataModel
 }
 
-interface CheckUserType {
+export interface CheckUserType {
   userId: number
   avatar: string
   username: string
@@ -28,7 +28,8 @@ interface CheckUserType {
 }
 
 interface UserInfoResDataModel {
-  checkUser: CheckUserType
+  checkUser?: CheckUserType
+  message?: string
 }
 
 // 获取用户详细信息的返回模型
