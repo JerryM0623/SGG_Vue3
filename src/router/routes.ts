@@ -13,7 +13,7 @@ export const constantRoutes: RouteRecordRaw[] = [
   },
   {
     path: '/',
-    name: 'layout',
+    name: 'Layout',
     meta: {
       title: '',
       hidden: false,
@@ -24,7 +24,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     children: [
       {
         path: '/home',
-        name: 'home',
+        name: 'Home',
         meta: {
           title: '首页',
           hidden: false,
@@ -36,7 +36,7 @@ export const constantRoutes: RouteRecordRaw[] = [
   },
   {
     path: '/screen',
-    name: 'screen',
+    name: 'Screen',
     meta: {
       title: '数据大屏',
       hidden: false,
