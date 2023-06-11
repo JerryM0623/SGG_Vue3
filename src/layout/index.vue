@@ -10,9 +10,21 @@ import {
 } from '@element-plus/icons-vue'
 import useLayoutStore from '@/store/modules/layout.ts'
 import { useRoute } from 'vue-router'
+import { ref, watch, nextTick } from 'vue'
 
 const layoutStore = useLayoutStore()
 const route = useRoute()
+
+const refreshFlag = ref(true)
+watch(
+  () => layoutStore.isRouterViewRefresh,
+  () => {
+    refreshFlag.value = false
+    nextTick(() => {
+      refreshFlag.value = true
+    })
+  },
+)
 </script>
 
 <template>
@@ -44,7 +56,11 @@ const route = useRoute()
           </el-breadcrumb>
         </div>
         <div class="headerbar-right">
-          <el-button :icon="Refresh" circle />
+          <el-button
+            @click="layoutStore.updateRefresh"
+            :icon="Refresh"
+            circle
+          />
           <el-button :icon="FullScreen" circle />
           <el-button :icon="Setting" circle />
           <el-avatar :size="30" src="/logo/logo.png" />
@@ -65,7 +81,7 @@ const route = useRoute()
       </div>
       <div class="bottom-view">
         <!-- 为页面切换特效做准备 -->
-        <router-view v-slot="{ Component }">
+        <router-view v-slot="{ Component }" v-if="refreshFlag">
           <transition name="fade">
             <component :is="Component" />
           </transition>
