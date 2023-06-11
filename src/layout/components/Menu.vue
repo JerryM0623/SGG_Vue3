@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import MenuItem from './MenuItem.vue'
+import { useRoute } from 'vue-router'
 defineProps(['menuList'])
+const route = useRoute()
 </script>
 
 <template>
   <el-scrollbar class="menu-scroll">
     <el-menu
-      default-active="1"
+      :default-active="route.path"
       class="layout-menu"
       background-color="#4c68ef"
       text-color="#ffffff"
-      active-background-color="#3c57dc"
+      active-text-color="#7ec265"
       router
     >
       <menu-item

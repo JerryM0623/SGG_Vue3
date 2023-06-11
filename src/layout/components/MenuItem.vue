@@ -1,10 +1,4 @@
 <script setup lang="ts">
-/**
- * 认知：
- * 单一选项就应该是但已选项不存在children属性
- * 一旦某一个route出现了children属性，那他就是一个sub-route
- * 即使他的children没有子元素，这个route也不会存在所谓的跳转
- */
 defineProps(['menuItem'])
 </script>
 
