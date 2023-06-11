@@ -25,6 +25,14 @@ watch(
     })
   },
 )
+
+function changeFullScreen() {
+  if (document.fullscreenElement) {
+    document.exitFullscreen()
+  } else {
+    document.documentElement.requestFullscreen()
+  }
+}
 </script>
 
 <template>
@@ -61,7 +69,7 @@ watch(
             :icon="Refresh"
             circle
           />
-          <el-button :icon="FullScreen" circle />
+          <el-button @click="changeFullScreen" :icon="FullScreen" circle />
           <el-button :icon="Setting" circle />
           <el-avatar :size="30" src="/logo/logo.png" />
           <el-dropdown>
