@@ -27,7 +27,7 @@ export const userLogin = (
  */
 export const userInfo = (): Promise<UserInfoResModel> => {
   return request({
-    url: userUrls.login,
+    url: userUrls.usrtInfo,
     method: 'GET',
   })
 }
